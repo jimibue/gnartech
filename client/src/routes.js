@@ -10,11 +10,11 @@ import PathsList from 'views/paths/PathsList';
 import PathsDetail from 'views/paths/PathsDetail';
 // import JobBoard from 'views/pages/job-board/JobBoard';
 
-const courses = {
-  explore: lazy(() => import('views/courses/CoursesExplore')),
-  list: lazy(() => import('views/courses/CoursesList')),
-  detail: lazy(() => import('views/courses/CoursesDetail')),
-};
+// const courses = {
+//   explore: lazy(() => import('views/courses/CoursesExplore')),
+//   list: lazy(() => import('views/courses/CoursesList')),
+//   detail: lazy(() => import('views/courses/CoursesDetail')),
+// };
 
 const jobBoard = lazy(() => import('views/pages/job-board/JobBoard'));
 
@@ -25,10 +25,10 @@ const pages = {
     settings: ProfileSettings, // lazy(() => import(views/pages/profile/ProfileSettings')),
   },
 };
-const paths = {
-  list: lazy(() => import('views/paths/PathsList')),
-  detail: lazy(() => import('views/paths/PathsDetail')),
-};
+// const paths = {
+//   list: lazy(() => import('views/paths/PathsList')),
+//   detail: lazy(() => import('views/paths/PathsDetail')),
+// };
 const appRoot = DEFAULT_PATHS.APP.endsWith('/') ? DEFAULT_PATHS.APP.slice(1, DEFAULT_PATHS.APP.length) : DEFAULT_PATHS.APP;
 
 const routesAndMenuItems = {
@@ -37,7 +37,7 @@ const routesAndMenuItems = {
       path: `${appRoot}/horizontal`,
       component: Home,
       // label: 'menu.horizontal',
-      label: 'Home',
+      label: 'menu.home',
       icon: 'home',
     },
     {
@@ -49,7 +49,7 @@ const routesAndMenuItems = {
     {
       path: `${appRoot}/paths`,
       component: PathsList,
-      label: 'Paths',
+      label: 'menu.paths',
       icon: 'road',
       exact: true,
     },
@@ -108,7 +108,7 @@ const routesAndMenuItems = {
     {
       path: `${appRoot}/job-board`,
       component: jobBoard,
-      label: 'Job Board?',
+      label: 'menu.job-board',
       icon: 'shipping',
     },
   ],

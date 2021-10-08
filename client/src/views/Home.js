@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Row, Col, Card } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import HtmlHead from 'components/html-head/HtmlHead';
 import BreadcrumbList from 'components/breadcrumb-list/BreadcrumbList';
 import Clamp from 'components/clamp';
 import HomeCard from 'components/james/HomeCard';
+import axios from 'axios';
 
 const Home = () => {
+  const getData = async () => {
+    console.log('getData:');
+    try {
+      const v1 = await axios.get('/api/v1/jobs');
+      const v2 = await axios.get('/api/v2/jobs');
+      console.log('v1:', v1.data);
+      console.log('v2:', v2.data);
+    } catch (err) {
+      console.log('err:', err);
+    }
+  };
+  useEffect(() => {
+    console.log('Home');
+    getData();
+    // console.log('What???:');
+  }, []);
+
   const title = 'Home';
   const description = 'Elearning Portal Paths List Page';
 

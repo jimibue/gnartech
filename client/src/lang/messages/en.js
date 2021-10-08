@@ -160,7 +160,7 @@ const enMessages = {
   'menu.docsdetail': 'Docs Detail',
   'menu.tickets': 'Tickets',
   'menu.tickets-detail': 'Teicket Detail',
-
+  'menu.job-board': 'Job Board',
   'menu.elearning': 'Elearning',
   'menu.school': 'School',
   'menu.courses': 'Courses',
