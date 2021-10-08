@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  skill: one
+  user: one
+  started: 2021-10-05
+  level: 1.5
+
+two:
+  skill: two
+  user: two
+  started: 2021-10-05
+  level: 1.5
