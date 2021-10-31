@@ -119,21 +119,21 @@ def create_companies_and_jobs
   mx = Company.create(name: "MX")
   mavenlink = Company.create(name: "Mavenlink")
   ###
-  j1 = mx.jobs.create(title: "Front End Dev", description: "Front end job at MX", link: "https:google.com")
+  j1 = mx.jobs.create(title: "Front End Dev", description: "Front end job at MX J1", link: "https:google.com")
   j1.job_skills.create(skill_id: Skill.where(name: "React")[0].id, desired_level: 2, desired_experience: 6)
   j1.job_skills.create(skill_id: Skill.where(name: "React Native")[0].id, desired_level: 2, desired_experience: 3)
   j1.job_skills.create(skill_id: Skill.where(name: "UI stuff")[0].id, desired_level: 1, desired_experience: 2)
   ####
-  j2 = mx.jobs.create(title: "Back End Dev", description: "Back end job at MX", link: "https:google.com")
+  j2 = mx.jobs.create(title: "Back End Dev", description: "Back end job at MX J2", link: "https:google.com")
   j2.job_skills.create(skill_id: Skill.where(name: "Rails")[0].id, desired_level: 2, desired_experience: 3)
   j2.job_skills.create(skill_id: Skill.where(name: "SQL")[0].id, desired_level: 2, desired_experience: 3)
   ####
-  j3 = mavenlink.jobs.create(title: "Front End Dev", description: "Front end job at Maven", link: "https:google.com")
+  j3 = mavenlink.jobs.create(title: "Front End Dev @", description: "Front end job at Maven J3#", link: "https:google.com")
   j3.job_skills.create(skill_id: Skill.where(name: "React")[0].id, desired_level: 3, desired_experience: 2)
   j3.job_skills.create(skill_id: Skill.where(name: "React Native")[0].id, desired_level: 2, desired_experience: 4)
   j3.job_skills.create(skill_id: Skill.where(name: "Figma")[0].id, desired_level: 5, desired_experience: 2)
 
-  j4 = mavenlink.jobs.create(title: "back End Dev", description: "Back end job at Maven", link: "https:google.com")
+  j4 = mavenlink.jobs.create(title: "back End Dev 2", description: "Back end job at Maven J4", link: "https:google.com")
   j4.job_skills.create(skill_id: Skill.where(name: "Rails")[0].id, desired_level: 2, desired_experience: 3)
   j4.job_skills.create(skill_id: Skill.where(name: "SQL")[0].id, desired_level: 2, desired_experience: 3)
 end
