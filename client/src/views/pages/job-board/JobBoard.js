@@ -1,70 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Row, Col, Button, Card, Badge } from 'react-bootstrap';
+import { Row, Col, Button, Card, Badge, ButtonGroup } from 'react-bootstrap';
 import HtmlHead from 'components/html-head/HtmlHead';
 import CsLineIcons from 'cs-line-icons/CsLineIcons';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import JobBoardCard from './JobBoardCard';
-import SkillCard from './SkillCard';
+import JobBoardSearch from './JobBoardSearch';
+import { getJobs, jobsSetFilter } from './JobsSlice';
 
 const JobBoard = () => {
-  const [jobs, setJobs] = useState([]);
-  const [skills, setSkills] = useState([]);
-
-  const normalizeJobs = (jobsData) => {
-    return jobsData.reduce((jobsAccum, job) => {
-      const jobIndex = jobsAccum.findIndex((j) => j.job_id === job.job_id);
-      if (jobIndex !== -1) {
-        jobsAccum[jobIndex].skills.push({
-          skilId: job.skill_id,
-          skillName: job.skill_name,
-          desiredExperience: job.desired_experience,
-          desiredLevel: job.desired_level,
-        });
-      } else {
-        jobsAccum.push({
-          companyAbout: job.company_about,
-          companyName: job.company_name,
-
-          job_id: job.job_id,
-          jobDescription: job.job_description,
-          skills: [
-            {
-              skilId: job.skill_id,
-              skillName: job.skill_name,
-              desiredExperience: job.desired_experience,
-              desiredLevel: job.desired_level,
-            },
-          ],
-        });
-      }
-      return jobsAccum;
-    }, []);
-  };
-  const getData = async () => {
-    console.log('getData:');
-    try {
-      const res = await axios.get('/api/v1/jobs');
-      const normalizedJobs = normalizeJobs(res.data);
-      console.log('normalizedJobs', normalizedJobs);
-      setJobs(normalizedJobs);
-    } catch (err) {
-      console.log('err:', err);
-    }
-  };
+  const { currentJobs, status, jobSkills } = useSelector((state) => state.jobs);
+  const dispatch = useDispatch();
   useEffect(() => {
-    console.log('Home');
-    getData();
-    // console.log('What???:');
+    dispatch(getJobs());
+    // dispatch(jobsSetFilter(['React', 'Rails']));
   }, []);
 
   const renderJobs = () => {
-    return jobs.map((job) => {
+    return currentJobs.map((job) => {
       return <JobBoardCard {...job} key={Math.random()} />;
     });
   };
   const title = 'Jobs';
   const description = 'All the jobs';
+
+  if (status === 'loading') return <p>loading</p>;
 
   return (
     <>
@@ -83,25 +43,13 @@ const JobBoard = () => {
       {/* Title End */}
 
       <h2 className="small-title">By Skill</h2>
-      <Row className="g-2">
-        <Col xs="6" xl="1" className="sh-20">
-          <SkillCard title="React" />
-        </Col>
-        <Col xs="6" xl="1" className="sh-20">
-          <SkillCard title="Rails" />
-        </Col>
-        <Col xs="6" xl="1" className="sh-20">
-          <SkillCard title="Rails" />
-        </Col>
-        <Col xs="6" xl="1" className="sh-20">
-          <SkillCard title="Rails" />
-        </Col>
-      </Row>
+
+      {/* tool for finding job */}
+      <JobBoardSearch jobSkills={jobSkills} />
 
       {/* Courier Services Start */}
       <div className="mb-5">
         <h2 className="small-title">Jobs</h2>
-
         {renderJobs()}
       </div>
 

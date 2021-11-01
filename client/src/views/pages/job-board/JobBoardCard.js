@@ -44,7 +44,8 @@ const JobBoardCard = ({ companyName, jobDescription, skills }) => {
                 {skills.map((skill) => {
                   return (
                     <Badge key={skill.job_id} bg="outline-primary">
-                      {skill.skillName} dl: {skill.desiredLevel} de: {skill.desiredExperience}
+                      {skill.skillName}
+                      {/* dl: {skill.desiredLevel} de: {skill.desiredExperience} */}
                     </Badge>
                   );
                 })}
