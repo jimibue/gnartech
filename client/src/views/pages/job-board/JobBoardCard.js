@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Button, Card, Badge } from 'react-bootstrap';
 import CsLineIcons from 'cs-line-icons/CsLineIcons';
+import { useSelector } from 'react-redux';
 // company_about: null
 // company_name: "MX"
 // desired_experience: 6
@@ -11,7 +12,13 @@ import CsLineIcons from 'cs-line-icons/CsLineIcons';
 // skill_id: 1
 // skill_name: "React"
 
-const JobBoardCard = ({ companyName, jobDescription, skills }) => {
+const JobBoardCard = ({ companyName, title, jobDescription, skills }) => {
+  const { jobSkillFilters } = useSelector((state) => state.jobs);
+  const getTagStyle = (skillName) => {
+    console.log('jobSkillFilters', jobSkillFilters);
+    console.log('skillName', skillName);
+    return jobSkillFilters.includes(skillName) ? 'primary' : 'outline-primary';
+  };
   return (
     <>
       <Card className="mb-2">
@@ -21,8 +28,11 @@ const JobBoardCard = ({ companyName, jobDescription, skills }) => {
             <Col className="ps-4">
               <Row className="mb-1">
                 <Col>
-                  <div className="heading text-primary mb-1">{companyName}</div>
-                  <div className="mb-3">{jobDescription}</div>
+                  <div className="heading text-primary mb-1">{title}</div>
+                  <div className="mb-1">
+                    {companyName} <span className="text-small text-primary text-muted"> (Remote)</span>
+                    <div className="text-alternate mb-1 text-small text-primary">$60,000-$100,000</div>
+                  </div>
                 </Col>
                 <Col xs="auto">
                   <Button variant="outline-primary" className="btn-icon btn-icon-only">
@@ -30,20 +40,22 @@ const JobBoardCard = ({ companyName, jobDescription, skills }) => {
                   </Button>
                 </Col>
               </Row>
-              <div className="mb-3">
-                <div className="text-small text-muted">Skills: {skills.length}</div>
-                <div className="text-alternate">Standard Shipping</div>
-                <div className="text-alternate">Priority Shipping</div>
+              <div className="mb-2">
+                <div className="text-alternate">{jobDescription}</div>
               </div>
-              <div className="mb-3">
+              <div className="mb-2">
+                <div className="text-small text-muted">Expienrce</div>
+                <div className="text-alternate">1-2years</div>
+              </div>
+              <div className="mb-2">
                 <div className="text-small text-muted">LOCATION</div>
-                <div className="text-alternate">Domestic</div>
+                <div className="text-alternate">Remote</div>
               </div>
               <div>
-                <div className="text-small text-muted">Skills: {skills.length}</div>
+                <div className="text-small text-muted">Skills</div>
                 {skills.map((skill) => {
                   return (
-                    <Badge key={skill.job_id} bg="outline-primary">
+                    <Badge key={skill.job_id} bg={getTagStyle(skill.skillName)}>
                       {skill.skillName}
                       {/* dl: {skill.desiredLevel} de: {skill.desiredExperience} */}
                     </Badge>

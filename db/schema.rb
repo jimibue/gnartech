@@ -25,9 +25,12 @@ ActiveRecord::Schema.define(version: 2021_10_05_160927) do
   create_table "courses", force: :cascade do |t|
     t.string "name"
     t.string "link"
-    t.float "stars"
+    t.float "rating"
     t.string "description"
-    t.integer "hours"
+    t.float "duration"
+    t.float "price"
+    t.string "level"
+    t.string "course_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

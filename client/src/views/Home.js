@@ -40,6 +40,13 @@ const Home = () => {
         </Col>
         <Col>
           <HomeCard
+            header="Job Prep"
+            description="Get help on that next interview.  Learn how to flex those soft skills, get help on how to standout in the pact."
+            img="/img/illustration/icon-launch.png"
+          />
+        </Col>
+        <Col>
+          <HomeCard
             header="Paths"
             description="Learn somerthing new today, our paths will help guide you and track through verfied way"
             img="/img/illustration/icon-experiment.png"
@@ -60,13 +67,7 @@ const Home = () => {
             img="/img/illustration/icon-configure.png"
           />
         </Col>
-        <Col>
-          <HomeCard
-            header="Job Prep"
-            description="Get help on that next interview.  Learn how to flex those soft skills, get help on how to standout in the pact."
-            img="/img/illustration/icon-launch.png"
-          />
-        </Col>
+
         <Col>
           <HomeCard
             header="Search Users"

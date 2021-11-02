@@ -8,12 +8,16 @@
   react_native: { name: "React Native" },
 }
 
+
 @courses = {
   frontend: { name: "Udemy React Native max",
              description: "React Native with max SCE",
              link: "https://google.com",
-             hours: 40,
-             stars: 4.2,
+             duration: 40,
+             rating: 4.2,
+             level: "No Experience",
+             price: 0,
+             course_type: "Video Course",
              skills: [
     @skillsHash[:react_native],
     @skillsHash[:typescript],
@@ -21,27 +25,35 @@
   ui: { name: "Udemy UI max",
        description: "Udemy UI max with max SCE",
        link: "https://google.com",
-       hours: 40,
-       stars: 3,
+       duration: 19,
+       rating: 3.2,
+       level: "Student",
+       price: 10.99,
+       course_type: "Video Course",
        skills: [
     @skillsHash[:ui],
     @skillsHash[:figma],
   ] },
-  fullStack: { name: "Udemy Full-Stack",
-              description: "React, Rails, Postgres, testing",
+  fullStack: { name: "React Hooks Article",
+              description: "React, Hooks",
               link: "https://google.com",
-              hours: 39,
-              stars: 4.5,
+              duration: 0.5,
+              rating: 3.2,
+              level: "Student",
+              price: 1.99,
+              course_type: "Article",
               skills: [
     @skillsHash[:react],
-    @skillsHash[:rails],
   ] },
 
-  backend: { name: "Udemy Backend-Stack",
+  backend: { name: "Some Youtube Vid",
             description: "all the backend things",
             link: "https://google.com",
-            hours: 39,
-            stars: 4.5,
+            duration: 3.5,
+            rating: 3.2,
+            level: "Grad",
+            price: 0,
+            course_type: "Video",
             skills: [
     @skillsHash[:sql],
     @skillsHash[:rails],
@@ -90,7 +102,7 @@ end
 
 def create_courses
   @courses.each do |key, course|
-    course_in_db = Course.create(name: course[:name], description: course[:description], stars: course[:stars], hours: course[:hours], link: course[:link])
+    course_in_db = Course.create(name: course[:name], description: course[:description], rating: course[:rating], duration: course[:duration], link: course[:link], course_type:course[:course_type], price: course[:price],level:course[:level])
     course[:skills].each do |skill|
       SkillCourse.create(skill_id: Skill.where(name: skill[:name])[0].id, course_id: course_in_db.id)
     end
@@ -116,10 +128,11 @@ def create_course_paths
 end
 
 def create_companies_and_jobs
-  mx = Company.create(name: "MX")
-  mavenlink = Company.create(name: "Mavenlink")
+  mx = Company.create(name: "MX", about:"At MX, we’re all about creating value. We believe finance can be simpler, more useful, and even enjoyable. We’re passionate about what we do, we have fun, and we trust each other as we work hard. It’s a good life."
+  )
+  mavenlink = Company.create(name: "Mavenlink",  about:"At MX, we’re all about creating value. We believe finance can be simpler, more useful, and even enjoyable. We’re passionate about what we do, we have fun, and we trust each other as we work hard. It’s a good life.")
   ###
-  j1 = mx.jobs.create(title: "Front End Dev", description: "Front end job at MX J1", link: "https:google.com")
+  j1 = mx.jobs.create(title: "Front End Dev", description: "We are seeking a Full Stack Web Developer specializing in development and maintenance of SharePoint and Joomla Websites. This work may be performed independently or within a team environment. The Customer is seeking a candidate with polished skills in concept development and execution while managing a moderate to heavy workload. The Web Developer will have experience developing customer SharePoint and Joomla websites. Work will include developing new SharePoint websites and conducting administration and maintenance of existing SharePoint websites and applications.", link: "https:google.com")
   j1.job_skills.create(skill_id: Skill.where(name: "React")[0].id, desired_level: 2, desired_experience: 6)
   j1.job_skills.create(skill_id: Skill.where(name: "React Native")[0].id, desired_level: 2, desired_experience: 3)
   j1.job_skills.create(skill_id: Skill.where(name: "UI stuff")[0].id, desired_level: 1, desired_experience: 2)
@@ -128,7 +141,7 @@ def create_companies_and_jobs
   j2.job_skills.create(skill_id: Skill.where(name: "Rails")[0].id, desired_level: 2, desired_experience: 3)
   j2.job_skills.create(skill_id: Skill.where(name: "SQL")[0].id, desired_level: 2, desired_experience: 3)
   ####
-  j3 = mavenlink.jobs.create(title: "Front End Dev @", description: "Front end job at Maven J3#", link: "https:google.com")
+  j3 = mavenlink.jobs.create(title: "Front End Dev @", description: "Identifies risk, writes test plans where appropriate, and performs testing on tasks needed to be completed within the timelines of a defined sprint. Ensures conformance of software development life cycle processes to requirements, standards, and procedures", link: "https:google.com")
   j3.job_skills.create(skill_id: Skill.where(name: "React")[0].id, desired_level: 3, desired_experience: 2)
   j3.job_skills.create(skill_id: Skill.where(name: "React Native")[0].id, desired_level: 2, desired_experience: 4)
   j3.job_skills.create(skill_id: Skill.where(name: "Figma")[0].id, desired_level: 5, desired_experience: 2)

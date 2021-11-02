@@ -59,9 +59,9 @@ const Nav = () => {
         style={placementStatus.placementHtmlData === MENU_PLACEMENT.Horizontal && menuPadding ? { paddingRight: menuPadding } : {}}
       >
         <NavLogo />
-        <NavLanguageSwitcher />
+        {/* <NavLanguageSwitcher /> */}
         <NavUserMenu />
-        <NavIconMenu />
+        {/* <NavIconMenu /> */}
         <MainMenu />
         <NavMobileButtons />
       </div>

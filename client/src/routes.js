@@ -10,11 +10,11 @@ import PathsList from 'views/paths/PathsList';
 import PathsDetail from 'views/paths/PathsDetail';
 // import JobBoard from 'views/pages/job-board/JobBoard';
 
-// const courses = {
-//   explore: lazy(() => import('views/courses/CoursesExplore')),
-//   list: lazy(() => import('views/courses/CoursesList')),
-//   detail: lazy(() => import('views/courses/CoursesDetail')),
-// };
+const courses = {
+  explore: lazy(() => import('views/courses/CoursesExplore')),
+  list: lazy(() => import('views/courses/CoursesList')),
+  detail: lazy(() => import('views/courses/CoursesDetail')),
+};
 
 const jobBoard = lazy(() => import('views/pages/job-board/JobBoard'));
 
@@ -34,7 +34,7 @@ const appRoot = DEFAULT_PATHS.APP.endsWith('/') ? DEFAULT_PATHS.APP.slice(1, DEF
 const routesAndMenuItems = {
   mainMenuItems: [
     {
-      path: `${appRoot}/horizontal`,
+      path: `${appRoot}/home`,
       component: Home,
       // label: 'menu.horizontal',
       label: 'menu.home',
@@ -44,13 +44,19 @@ const routesAndMenuItems = {
       path: DEFAULT_PATHS.APP,
       exact: true,
       redirect: true,
-      to: `${appRoot}/horizontal`,
+      to: `${appRoot}/home`,
+    },
+    {
+      path: `${appRoot}/job-board`,
+      component: jobBoard,
+      label: 'menu.job-board',
+      icon: 'shipping',
     },
     {
       path: `${appRoot}/paths`,
       component: PathsList,
       label: 'menu.paths',
-      icon: 'road',
+      icon: 'car',
       exact: true,
     },
     {
@@ -70,19 +76,19 @@ const routesAndMenuItems = {
     //     { path: '/detail', label: 'menu.detail', component: paths.detail },
     //   ],
     // },
-    // {
-    //   path: `${appRoot}/courses`,
-    //   label: 'menu.courses',
-    //   icon: 'online-class',
-    //   exact: true,
-    //   redirect: true,
-    //   to: `${appRoot}/courses/explore`,
-    //   subs: [
-    //     { path: '/explore', label: 'menu.explore', component: courses.explore },
-    //     { path: '/list', label: 'menu.list', component: courses.list },
-    //     { path: '/detail', label: 'menu.detail', component: courses.detail },
-    //   ],
-    // },
+    {
+      path: `${appRoot}/courses`,
+      label: 'menu.courses',
+      icon: 'online-class',
+      exact: true,
+      redirect: true,
+      to: `${appRoot}/courses/explore`,
+      subs: [
+        { path: '/explore', label: 'menu.explore', component: courses.explore },
+        { path: '/list', label: 'menu.list', component: courses.list },
+        { path: '/detail', label: 'menu.detail', component: courses.detail },
+      ],
+    },
     {
       path: '/profile',
       label: 'menu.profile',
@@ -99,18 +105,12 @@ const routesAndMenuItems = {
       icon: 'grid-2',
     },
 
-    {
-      path: `${appRoot}/vertical`,
-      label: 'menu.vertical',
-      icon: 'grid-3',
-      component: VerticalPage,
-    },
-    {
-      path: `${appRoot}/job-board`,
-      component: jobBoard,
-      label: 'menu.job-board',
-      icon: 'shipping',
-    },
+    // {
+    //   path: `${appRoot}/vertical`,
+    //   label: 'menu.vertical',
+    //   icon: 'grid-3',
+    //   component: VerticalPage,
+    // },
   ],
   sidebarItems: [],
 };

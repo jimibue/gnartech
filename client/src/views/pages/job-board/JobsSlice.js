@@ -18,7 +18,7 @@ const normalizeJobs = (jobsData, filters) => {
       jobsAccum.push({
         companyAbout: job.company_about,
         companyName: job.company_name,
-
+        title: job.title,
         job_id: job.job_id,
         jobDescription: job.job_description,
         skills: [

@@ -18,6 +18,7 @@ import scrollspyReducer from 'components/scrollspy/scrollspySlice';
 // import persist key
 import { REDUX_PERSIST_KEY } from 'config.js';
 import jobsReducer from 'views/pages/job-board/JobsSlice';
+import coursesReducer from 'views/courses/courseSlice';
 
 const persistConfig = {
   key: REDUX_PERSIST_KEY,
@@ -36,6 +37,7 @@ const persistedReducer = persistReducer(
     notification: notificationReducer,
     scrollspy: scrollspyReducer,
     jobs: jobsReducer,
+    courses: coursesReducer,
   })
 );
 const store = configureStore({
