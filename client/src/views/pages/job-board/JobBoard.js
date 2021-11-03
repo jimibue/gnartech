@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import JobBoardCard from './JobBoardCard';
 import JobBoardSearch from './JobBoardSearch';
 import { getJobs, jobsSetFilter } from './JobsSlice';
+import { jobBoards } from './outsideJobBoards';
 
 const JobBoard = () => {
   const { currentJobs, status, jobSkills } = useSelector((state) => state.jobs);
@@ -29,7 +30,6 @@ const JobBoard = () => {
   return (
     <>
       <HtmlHead title={title} description={description} />
-
       {/* Title Start */}
       <div className="page-title-container">
         <NavLink className="muted-link pb-1 d-inline-block hidden breadcrumb-back" to="/">
@@ -41,18 +41,27 @@ const JobBoard = () => {
         </h1>
       </div>
       {/* Title End */}
-
-      <h2 className="small-title">By Skill</h2>
-
-      {/* tool for finding job */}
-      <JobBoardSearch jobSkills={jobSkills} />
-
-      {/* Courier Services Start */}
+      <h2 className="small-title mb-1">Job Boards</h2>
       <div className="mb-5">
-        <h2 className="small-title">Jobs</h2>
-        {renderJobs()}
+        {jobBoards.map(({ id, link, name }) => (
+          <>
+            <a target="_blank" rel="noreferrer" className="badge bg-outline-primary" key={id} href={link}>
+              {name}
+            </a>
+            -
+          </>
+        ))}
       </div>
 
+      <h2 className="small-title">By Skill</h2>
+      {/* tool for finding job */}
+      <JobBoardSearch jobSkills={jobSkills} />
+      {/* Courier Services Start */}
+      <div className="mb-5">
+        {/* <h2 className="small-title">Jobs</h2> */}
+        <div className="mb-5" />
+        {renderJobs()}
+      </div>
       {/* Box Sizes End */}
     </>
   );

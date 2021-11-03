@@ -20,6 +20,13 @@ import { REDUX_PERSIST_KEY } from 'config.js';
 import jobsReducer from 'views/pages/job-board/JobsSlice';
 import coursesReducer from 'views/courses/courseSlice';
 
+// import app reducers
+import calendarReducer from 'views/community/calendar/calendarSlice';
+import contactsReducer from 'views/community/contacts/contactsSlice';
+import chatReducer from 'views/community/chat/chatSlice';
+import mailboxReducer from 'views/community/mailbox/mailboxSlice';
+import tasksReducer from 'views/community/tasks/tasksSlice';
+
 const persistConfig = {
   key: REDUX_PERSIST_KEY,
   storage,
@@ -38,6 +45,11 @@ const persistedReducer = persistReducer(
     scrollspy: scrollspyReducer,
     jobs: jobsReducer,
     courses: coursesReducer,
+    calendar: calendarReducer,
+    contacts: contactsReducer,
+    chat: chatReducer,
+    mailbox: mailboxReducer,
+    tasks: tasksReducer,
   })
 );
 const store = configureStore({

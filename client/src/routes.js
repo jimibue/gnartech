@@ -25,6 +25,15 @@ const pages = {
     settings: ProfileSettings, // lazy(() => import(views/pages/profile/ProfileSettings')),
   },
 };
+
+const community = {
+  index: lazy(() => import('views/community/Apps')),
+  calendar: lazy(() => import('views/community/calendar/Calendar')),
+  chat: lazy(() => import('views/community/chat/Chat')),
+  contacts: lazy(() => import('views/community/contacts/Contacts')),
+  mailbox: lazy(() => import('views/community/mailbox/Mailbox')),
+  tasks: lazy(() => import('views/community/tasks/Tasks')),
+};
 // const paths = {
 //   list: lazy(() => import('views/paths/PathsList')),
 //   detail: lazy(() => import('views/paths/PathsDetail')),
@@ -40,6 +49,7 @@ const routesAndMenuItems = {
       label: 'menu.home',
       icon: 'home',
     },
+
     {
       path: DEFAULT_PATHS.APP,
       exact: true,
@@ -63,6 +73,19 @@ const routesAndMenuItems = {
       path: `${appRoot}/paths/:id`,
       component: PathsDetail,
       exact: true,
+    },
+    {
+      path: `${appRoot}/community`,
+      label: 'menu.community',
+      icon: 'screen',
+      component: community.index,
+      subs: [
+        { path: '/calendar', label: 'menu.calendar', component: community.calendar },
+        { path: '/chat', label: 'menu.chat', component: community.chat },
+        { path: '/contacts', label: 'menu.contacts', component: community.contacts },
+        { path: '/mailbox', label: 'menu.mailbox', component: community.mailbox },
+        { path: '/tasks', label: 'menu.tasks', component: community.tasks },
+      ],
     },
     // {
     //   path: `${appRoot}/paths`,
